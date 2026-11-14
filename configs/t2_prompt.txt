@@ -1,0 +1,13 @@
+# T2 prompt (frozen before the G3 pilot, 2026-11-09). Model: Qwen/Qwen3-VL-8B-Instruct, greedy, no system prompt.
+# Message layout (one user turn): TEXT_BEFORE, image(pre, red circle), TEXT_BETWEEN, image(post, red circle), QUESTION.
+# Probabilities = softmax over the next-token logits of "A", "B", "C" right after the assistant generation prompt.
+[TEXT_BEFORE]
+Image 1 was taken before a wildfire:
+[TEXT_BETWEEN]
+Image 2 shows the same 64 m x 64 m area after the wildfire:
+[QUESTION]
+The building of interest is marked with a red circle in both images. Compare this building before and after the fire and classify its damage.
+A) no damage
+B) damaged (partly burnt or damaged, but not destroyed)
+C) destroyed
+Answer with one letter only: A, B, or C.

@@ -1,0 +1,46 @@
+{
+ "n": 200,
+ "batch_size": 16,
+ "seq_len": 232,
+ "model_load_s": 15.7,
+ "inference_s": 7.19,
+ "s_per_building": 0.0359,
+ "s_per_building_excl_first_batch": 0.02,
+ "peak_mem_alloc_GB": 19.33,
+ "peak_mem_reserved_GB": 20.14,
+ "accuracy": 0.465,
+ "macro_f1": 0.4712,
+ "per_class_f1": [
+  0.4915,
+  0.4372,
+  0.4848
+ ],
+ "confusion_rows_true_cols_pred": [
+  [
+   29,
+   37,
+   1
+  ],
+  [
+   19,
+   40,
+   8
+  ],
+  [
+   3,
+   39,
+   24
+  ]
+ ],
+ "pred_counts": [
+  51,
+  116,
+  33
+ ],
+ "p_sum_max_abs_dev": 1.1920928955078125e-07,
+ "abc_mass_min_median": [
+  1.0,
+  1.0
+ ],
+ "gpu": "NVIDIA H200"
+}

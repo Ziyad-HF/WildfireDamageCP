@@ -1,0 +1,143 @@
+{
+ "tag": "t1_fold2_seed2",
+ "smoke": false,
+ "backbone": "convnext_tiny.fb_in1k",
+ "best_epoch": 6,
+ "best_val_macro_f1": 0.6941,
+ "epochs_run": 10,
+ "class_weights": [
+  0.2824,
+  2.0078,
+  0.7099
+ ],
+ "gpu": "NVIDIA H200",
+ "peak_mem_GB": 8.68,
+ "pred_rows": {
+  "test": 24976,
+  "calib": 9855,
+  "eaton": 8457,
+  "val": 4716
+ },
+ "history": [
+  {
+   "epoch": 1,
+   "train_loss": 0.3005,
+   "val_macro_f1": 0.6782,
+   "val_f1": [
+    0.9755,
+    0.1591,
+    0.9001
+   ],
+   "train_s": 39.3,
+   "total_s": 42.8
+  },
+  {
+   "epoch": 2,
+   "train_loss": 0.2252,
+   "val_macro_f1": 0.6604,
+   "val_f1": [
+    0.9591,
+    0.2014,
+    0.8209
+   ],
+   "train_s": 36.2,
+   "total_s": 38.9
+  },
+  {
+   "epoch": 3,
+   "train_loss": 0.1918,
+   "val_macro_f1": 0.6862,
+   "val_f1": [
+    0.9602,
+    0.2083,
+    0.8901
+   ],
+   "train_s": 32.9,
+   "total_s": 35.6
+  },
+  {
+   "epoch": 4,
+   "train_loss": 0.1514,
+   "val_macro_f1": 0.6856,
+   "val_f1": [
+    0.9657,
+    0.2222,
+    0.8689
+   ],
+   "train_s": 34.3,
+   "total_s": 37.0
+  },
+  {
+   "epoch": 5,
+   "train_loss": 0.1184,
+   "val_macro_f1": 0.6737,
+   "val_f1": [
+    0.969,
+    0.1679,
+    0.8843
+   ],
+   "train_s": 33.1,
+   "total_s": 35.8
+  },
+  {
+   "epoch": 6,
+   "train_loss": 0.091,
+   "val_macro_f1": 0.6941,
+   "val_f1": [
+    0.9674,
+    0.2267,
+    0.8881
+   ],
+   "train_s": 33.7,
+   "total_s": 36.3
+  },
+  {
+   "epoch": 7,
+   "train_loss": 0.0733,
+   "val_macro_f1": 0.6924,
+   "val_f1": [
+    0.9671,
+    0.2281,
+    0.8818
+   ],
+   "train_s": 34.3,
+   "total_s": 37.0
+  },
+  {
+   "epoch": 8,
+   "train_loss": 0.0665,
+   "val_macro_f1": 0.6684,
+   "val_f1": [
+    0.9607,
+    0.1849,
+    0.8595
+   ],
+   "train_s": 33.8,
+   "total_s": 36.5
+  },
+  {
+   "epoch": 9,
+   "train_loss": 0.0469,
+   "val_macro_f1": 0.6715,
+   "val_f1": [
+    0.9726,
+    0.1609,
+    0.881
+   ],
+   "train_s": 33.4,
+   "total_s": 36.1
+  },
+  {
+   "epoch": 10,
+   "train_loss": 0.0423,
+   "val_macro_f1": 0.6643,
+   "val_f1": [
+    0.97,
+    0.1379,
+    0.8848
+   ],
+   "train_s": 34.6,
+   "total_s": 37.3
+  }
+ ]
+}

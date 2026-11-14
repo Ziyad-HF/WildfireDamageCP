@@ -1,0 +1,2 @@
+pre scenes 6, post scenes 6; sampled 30 buildings ({'no damage': 10, 'damaged': 10, 'destroyed': 10}); crop 80 m
+pre-vs-post image shift over 200 m windows: median 2.33 m, max 5.20 m

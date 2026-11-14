@@ -1,0 +1,42 @@
+# Shared on GitHub: code, configs, results (tables, predictions, logs), figures, report.
+# NOT shared: raw/processed data, image crops, model checkpoints, job logs, archives.
+
+# Data and crops (xBD, CAL FIRE DINS, Maxar imagery)
+data/
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+
+# Model weights and checkpoints
+checkpoints/
+*.pt
+*.pth
+*.safetensors
+*.bin
+*.ckpt
+
+# Job logs and archives
+logs/
+*.tar
+*.tar.gz
+*.zip
+
+# Python / OS / Office clutter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+~$*
+
+# Leftover git lock files from the laptop's Linux shell
+.git/stale-*
+
+# Internal work log (kept locally)
+HANDOFF.md
+
+# Cluster job scripts and placeholder files (kept locally)
+slurm/
+.gitkeep
+notebooks/

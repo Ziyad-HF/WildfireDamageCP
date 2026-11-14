@@ -1,0 +1,31 @@
+model,method,evaluation,coverage,coverage 95% CI,cov no damage,cov damaged,cov destroyed,mean set size
+T1 ConvNeXt,APS_rand (post-hoc),test: Santa Rosa,0.915 ± 0.011,"[0.910, 0.919]",0.919 ± 0.009,0.508 ± 0.106,0.917 ± 0.020,1.13 ± 0.07
+T1 ConvNeXt,APS_rand (post-hoc),test: Woolsey,0.903 ± 0.001,"[0.898, 0.907]",0.920 ± 0.008,0.541 ± 0.117,0.867 ± 0.019,1.20 ± 0.02
+T1 ConvNeXt,APS_rand (post-hoc),test: Pinery,0.899 ± 0.004,"[0.892, 0.907]",0.918 ± 0.006,0.593 ± 0.039,0.729 ± 0.009,1.14 ± 0.05
+T1 ConvNeXt,APS_rand (post-hoc),test: Portugal,0.897 ± 0.002,"[0.892, 0.901]",0.919 ± 0.005,0.528 ± 0.078,0.646 ± 0.092,1.09 ± 0.02
+T1 ConvNeXt,APS_rand (post-hoc),Eaton (4 fold models),0.889 ± 0.004,–,0.917 ± 0.002,0.361 ± 0.076,0.935 ± 0.018,1.15 ± 0.05
+T1 ConvNeXt,Ordinal_rand (post-hoc),test: Santa Rosa,0.913 ± 0.009,"[0.908, 0.917]",0.916 ± 0.007,0.611 ± 0.096,0.915 ± 0.018,1.17 ± 0.09
+T1 ConvNeXt,Ordinal_rand (post-hoc),test: Woolsey,0.901 ± 0.002,"[0.896, 0.906]",0.917 ± 0.006,0.671 ± 0.031,0.856 ± 0.025,1.23 ± 0.00
+T1 ConvNeXt,Ordinal_rand (post-hoc),test: Pinery,0.900 ± 0.004,"[0.893, 0.908]",0.917 ± 0.007,0.685 ± 0.089,0.691 ± 0.011,1.16 ± 0.06
+T1 ConvNeXt,Ordinal_rand (post-hoc),test: Portugal,0.897 ± 0.002,"[0.893, 0.902]",0.918 ± 0.006,0.670 ± 0.050,0.603 ± 0.066,1.11 ± 0.02
+T1 ConvNeXt,Ordinal_rand (post-hoc),Eaton (4 fold models),0.891 ± 0.005,–,0.915 ± 0.002,0.406 ± 0.059,0.934 ± 0.017,1.16 ± 0.06
+T2 VLM zero-shot,APS_rand (post-hoc),test: Santa Rosa,0.821,"[0.808, 0.837]",0.764,0.981,0.971,2.28
+T2 VLM zero-shot,APS_rand (post-hoc),test: Woolsey,0.850,"[0.841, 0.858]",0.833,0.998,0.907,2.39
+T2 VLM zero-shot,APS_rand (post-hoc),test: Pinery,0.936,"[0.927, 0.945]",0.937,0.994,0.882,2.45
+T2 VLM zero-shot,APS_rand (post-hoc),test: Portugal,0.958,"[0.955, 0.962]",0.966,1.000,0.787,2.57
+T2 VLM zero-shot,APS_rand (post-hoc),Eaton (4 fold models),0.842 ± 0.032,–,0.672 ± 0.065,0.988 ± 0.016,0.996 ± 0.002,2.18 ± 0.20
+T2 VLM zero-shot,Ordinal_rand (post-hoc),test: Santa Rosa,0.821,"[0.806, 0.835]",0.764,0.981,0.971,2.28
+T2 VLM zero-shot,Ordinal_rand (post-hoc),test: Woolsey,0.850,"[0.842, 0.858]",0.833,1.000,0.907,2.40
+T2 VLM zero-shot,Ordinal_rand (post-hoc),test: Pinery,0.936,"[0.927, 0.944]",0.937,0.994,0.882,2.45
+T2 VLM zero-shot,Ordinal_rand (post-hoc),test: Portugal,0.958,"[0.954, 0.962]",0.966,1.000,0.787,2.57
+T2 VLM zero-shot,Ordinal_rand (post-hoc),Eaton (4 fold models),0.842 ± 0.032,–,0.672 ± 0.065,0.988 ± 0.016,0.996 ± 0.002,2.18 ± 0.20
+T3 VLM + LoRA,APS_rand (post-hoc),test: Santa Rosa,0.904 ± 0.003,"[0.899, 0.908]",0.911 ± 0.000,0.358 ± 0.129,0.904 ± 0.008,1.04 ± 0.03
+T3 VLM + LoRA,APS_rand (post-hoc),test: Woolsey,0.888 ± 0.004,"[0.883, 0.893]",0.899 ± 0.009,0.710 ± 0.033,0.859 ± 0.071,1.17 ± 0.01
+T3 VLM + LoRA,APS_rand (post-hoc),test: Pinery,0.895 ± 0.004,"[0.886, 0.903]",0.910 ± 0.007,0.589 ± 0.103,0.801 ± 0.013,1.15 ± 0.05
+T3 VLM + LoRA,APS_rand (post-hoc),test: Portugal,0.902 ± 0.007,"[0.897, 0.906]",0.922 ± 0.007,0.559 ± 0.134,0.665 ± 0.107,1.11 ± 0.04
+T3 VLM + LoRA,APS_rand (post-hoc),Eaton (4 fold models),0.878 ± 0.010,–,0.908 ± 0.005,0.407 ± 0.076,0.912 ± 0.013,1.07 ± 0.04
+T3 VLM + LoRA,Ordinal_rand (post-hoc),test: Santa Rosa,0.905 ± 0.003,"[0.900, 0.910]",0.912 ± 0.003,0.505 ± 0.052,0.902 ± 0.013,1.06 ± 0.03
+T3 VLM + LoRA,Ordinal_rand (post-hoc),test: Woolsey,0.887 ± 0.003,"[0.882, 0.891]",0.899 ± 0.009,0.719 ± 0.026,0.850 ± 0.064,1.18 ± 0.01
+T3 VLM + LoRA,Ordinal_rand (post-hoc),test: Pinery,0.895 ± 0.004,"[0.887, 0.903]",0.910 ± 0.007,0.628 ± 0.059,0.786 ± 0.019,1.16 ± 0.04
+T3 VLM + LoRA,Ordinal_rand (post-hoc),test: Portugal,0.903 ± 0.008,"[0.898, 0.907]",0.923 ± 0.008,0.645 ± 0.095,0.634 ± 0.119,1.13 ± 0.03
+T3 VLM + LoRA,Ordinal_rand (post-hoc),Eaton (4 fold models),0.881 ± 0.011,–,0.909 ± 0.006,0.438 ± 0.074,0.913 ± 0.014,1.08 ± 0.05

@@ -1,0 +1,21 @@
+fold,test_fire,role,no damage,damaged,destroyed,total
+1,santa-rosa,train,32493,833,3744,37070
+1,santa-rosa,val,4699,155,770,5624
+1,santa-rosa,calib,8852,222,985,10059
+1,santa-rosa,test,15843,216,5810,21869
+1,santa-rosa,eaton,4007,543,3907,8457
+2,woolsey,train,29774,589,4712,35075
+2,woolsey,val,3860,116,740,4716
+2,woolsey,calib,8015,163,1677,9855
+2,woolsey,test,20238,558,4180,24976
+2,woolsey,eaton,4007,543,3907,8457
+3,pinery,train,40541,828,7415,48784
+3,pinery,val,5633,171,1281,7085
+3,pinery,calib,10694,247,2384,13325
+3,pinery,test,5019,180,229,5428
+3,pinery,eaton,4007,543,3907,8457
+4,portugal,train,29288,648,6908,36844
+4,portugal,val,4234,119,1127,5480
+4,portugal,calib,7578,187,2184,9949
+4,portugal,test,20787,472,1090,22349
+4,portugal,eaton,4007,543,3907,8457
