@@ -100,6 +100,18 @@ Cells: auto-labelled share / missed-destroyed rate on the target.
 | WP2 repair | M5 look-alike weighting (image features) | 89% / 1.6% | 79% / 4.8% | 78% / 12.2% | 83% / 16.1% | 89% / 1.6% | 3 | 3 | no |
 | WP2 repair | M5 look-alike weighting (scores) | 89% / 1.6% | 77% / 4.0% | 76% / 12.2% | 87% / 17.5% | 90% / 1.9% | 3 | 3 | no |
 
+## Per-model robustness (T3, destroyed vs not, limit 5%)
+
+Number of single models (fold × seed runs; Eaton: all 12 fold models) that are both safe (missed ≤ 5%) and useful (auto ≥ 50%). The summary tables above average over seeds, which can hide unsafe individual models.
+
+| method | Santa Rosa | Woolsey | Pinery | Portugal | Eaton |
+|---|---|---|---|---|---|
+| Conformal APS (Phase 5) | 3/3 | 1/3 | 0/3 | 0/3 | 12/12 |
+| M2 learn as you go (5% audits), mean over 20 orders | 3/3 | 1/3 | 0/3 | 0/3 | 12/12 |
+| M1 local sample n = 300, mean over 20 samples | 3/3 | 2/3 | 0/3 | 0/3 | 12/12 |
+| M5 look-alike weighting (scores) | 3/3 | 2/3 | 0/3 | 0/3 | 12/12 |
+| M5 look-alike weighting (image features) | 3/3 | 3/3 | 1/3 | 0/3 | 12/12 |
+
 ## Sensitivity to the limit (T3, destroyed vs not)
 
 Cells: auto-labelled / missed-destroyed.

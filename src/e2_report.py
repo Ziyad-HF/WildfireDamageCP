@@ -98,6 +98,28 @@ for model, task in [("t3", "binary"), ("t3", "3class"), ("t1", "binary"), ("t1",
               + to_md(wide(res)) + "\n")
     if (model, task) == ("t3", "binary"): main_res = res
 
+# per-run robustness (T3, destroyed vs not, 5%): how many single models are safe and useful
+def runs_ok(d, a, m, label):
+    d = d.copy(); d["tgt"] = tgt(d); out = {"method": label}
+    for t in ORDER:
+        x = d[d.tgt == t]; ok = ((x[m] <= 0.05) & (x[a] >= 0.5)).sum(); out[t] = f"{int(ok)}/{len(x)}"
+    return out
+pr = []
+w1r = pd.read_csv(os.path.join(T, "e2_wp1_runs.csv")); w1r = w1r[(w1r.model == "t3") & (w1r.task == "binary") & (w1r.limit == 0.05) & (w1r.rule == "A1")]
+pr.append(runs_ok(w1r[w1r.method == "C1_APS"], "auto_share", "missed_destroyed_rate", "Conformal APS (Phase 5)"))
+m2r = pd.read_csv(os.path.join(T, "e2_wp2_m2.csv")); m2r = m2r[(m2r.model == "t3") & (m2r.task == "binary") & (m2r.limit == 0.05) & (m2r.audit == 0.05)]
+pr.append(runs_ok(m2r, "auto_mean", "missed_mean", "M2 learn as you go (5% audits), mean over 20 orders"))
+mlr = pd.read_csv(os.path.join(T, "e2_wp2_m1_local.csv")); mlr = mlr[(mlr.model == "t3") & (mlr.task == "binary") & (mlr.n == 300) & (mlr.method == "M1_local")]
+mlr = mlr.groupby(["fold", "seed", "target"])[["auto_share", "missed_destroyed_rate"]].mean().reset_index()
+pr.append(runs_ok(mlr, "auto_share", "missed_destroyed_rate", "M1 local sample n = 300, mean over 20 samples"))
+m5r = pd.read_csv(os.path.join(T, "e2_wp2_m5.csv")); m5r = m5r[(m5r.model == "t3") & (m5r.task == "binary") & (m5r.limit == 0.05)]
+pr.append(runs_ok(m5r, "auto_share", "missed_destroyed_rate", "M5 look-alike weighting (scores)"))
+if os.path.exists(os.path.join(T, "e2_wp2_m5_features.csv")):
+    m5fr = pd.read_csv(os.path.join(T, "e2_wp2_m5_features.csv")); m5fr = m5fr[(m5fr.model == "t3") & (m5fr.task == "binary")]
+    pr.append(runs_ok(m5fr, "auto_share", "missed_destroyed_rate", "M5 look-alike weighting (image features)"))
+md.append("## Per-model robustness (T3, destroyed vs not, limit 5%)\n\nNumber of single models (fold × seed runs; Eaton: all 12 fold models) that are both safe (missed ≤ 5%) and useful (auto ≥ 50%). "
+          "The summary tables above average over seeds, which can hide unsafe individual models.\n\n" + to_md(pd.DataFrame(pr)[["method"] + ORDER]) + "\n")
+
 # sensitivity 2% / 10% (T3 binary): baseline APS, M1 calib, M2 5% audits
 sens = []
 w1 = pd.read_csv(os.path.join(T, "e2_wp1_runs.csv")); w1 = w1[(w1.model == "t3") & (w1.task == "binary") & (w1.rule == "A1") & (w1.method == "C1_APS")]
