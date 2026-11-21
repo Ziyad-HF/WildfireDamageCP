@@ -1,0 +1,26 @@
+target,metric,t1,t3,diff_t3_minus_t1,ci_lo,ci_hi,n_cells,ci_excludes_0,equivalent_within_0.02
+Santa Rosa,macro_f1,0.66932,0.66675,-0.00257,-0.01347,0.00838,496,False,True
+Santa Rosa,f1_des,0.93542,0.93575,0.00033,-0.00592,0.00752,496,False,
+Santa Rosa,ece,0.03192,0.01228,-0.01964,-0.02199,-0.01709,496,True,
+Santa Rosa,auto_share,0.84441,0.92024,0.07583,0.06471,0.08839,496,True,
+Santa Rosa,missed_destroyed_rate,0.00861,0.01096,0.00235,-0.00071,0.00529,496,False,
+Woolsey,macro_f1,0.63799,0.63718,-0.00082,-0.01014,0.00871,706,False,True
+Woolsey,f1_des,0.81762,0.79164,-0.02598,-0.03435,-0.01712,706,True,
+Woolsey,ece,0.01614,0.01928,0.00315,-0.00249,0.00761,706,False,
+Woolsey,auto_share,0.93846,0.90175,-0.03672,-0.04370,-0.03092,706,True,
+Woolsey,missed_destroyed_rate,0.13963,0.09442,-0.04522,-0.05697,-0.03374,706,True,
+Pinery,macro_f1,0.57764,0.57081,-0.00683,-0.03049,0.01472,411,False,False
+Pinery,f1_des,0.55870,0.55891,0.00020,-0.05208,0.04946,411,False,
+Pinery,ece,0.01094,0.02460,0.01366,0.00593,0.01615,411,True,
+Pinery,auto_share,0.93177,0.92066,-0.01112,-0.02035,-0.00378,411,True,
+Pinery,missed_destroyed_rate,0.31732,0.20378,-0.11354,-0.16790,-0.06222,411,True,
+Portugal,macro_f1,0.53414,0.51857,-0.01557,-0.02761,-0.00248,877,True,False
+Portugal,f1_des,0.46171,0.45506,-0.00665,-0.02751,0.01514,877,False,
+Portugal,ece,0.00966,0.01473,0.00507,0.00277,0.00701,877,True,
+Portugal,auto_share,0.95209,0.95273,0.00064,-0.00175,0.00298,877,False,
+Portugal,missed_destroyed_rate,0.42691,0.38257,-0.04434,-0.06753,-0.02365,877,True,
+Eaton,macro_f1,0.68345,0.69305,0.00961,0.00508,0.01439,99,True,True
+Eaton,f1_des,0.95754,0.96924,0.01170,0.00902,0.01447,99,True,
+Eaton,ece,0.03576,0.03127,-0.00449,-0.00890,-0.00014,99,True,
+Eaton,auto_share,0.90963,0.93354,0.02391,0.01941,0.02777,99,True,
+Eaton,missed_destroyed_rate,0.02803,0.01024,-0.01779,-0.02140,-0.01436,99,True,
