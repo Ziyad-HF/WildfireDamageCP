@@ -49,6 +49,12 @@ m5 = pd.read_csv(os.path.join(T, "e2_wp2_m5.csv")); m5 = m5[(m5.model == "t3") &
 m5["tgt"] = tgt(m5)
 for t, g in m5.groupby("tgt"):
     rows.append({"method": "M5 look-alike weighting (scores)", "target": t, "auto_share": g.auto_share.mean(), "missed_rate": g.missed_destroyed_rate.mean(), "audits": 0.0})
+f5 = os.path.join(T, "e2_wp2_m5_features.csv")
+if os.path.exists(f5):
+    m5f = pd.read_csv(f5); m5f = m5f[(m5f.model == "t3") & (m5f.task == "binary")]; m5f["tgt"] = tgt(m5f)
+    for t, g in m5f.groupby("tgt"):
+        rows.append({"method": "M5 look-alike weighting (image features)", "target": t, "auto_share": g.auto_share.mean(),
+                     "missed_rate": g.missed_destroyed_rate.mean(), "audits": 0.0})
 for t in counts:
     rows.append({"method": "Inspect everything", "target": t, "auto_share": 0.0, "missed_rate": 0.0, "audits": 0.0})
 

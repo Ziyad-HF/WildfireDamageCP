@@ -3,6 +3,7 @@ All results here are an added analysis (E2), defined after the main results had 
 """
 import os, sys
 import numpy as np, pandas as pd, matplotlib
+import matplotlib.ticker
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -174,10 +175,9 @@ for t in ORDER:
     x = m2[m2.tgt == t].sort_values("audit")
     ax[0].plot(100 * x.audit, 100 * x.missed, marker=mks[t], color=C2, lw=1.2, ms=5, label=t)
     ax[1].plot(100 * x.audit, 100 * x.auto, marker=mks[t], color=C2, lw=1.2, ms=5, label=t)
-    ax[0].annotate(t, (100 * x.audit.iloc[-1], 100 * x.missed.iloc[-1]), xytext=(4, 0), textcoords="offset points", fontsize=7, color=INK2, va="center")
-    ax[1].annotate(t, (100 * x.audit.iloc[-1], 100 * x.auto.iloc[-1]), xytext=(4, 0), textcoords="offset points", fontsize=7, color=INK2, va="center")
 ax[0].axhline(5, color=INK2, lw=1, ls=":"); ax[0].set_ylabel("destroyed homes missed (%)"); ax[1].set_ylabel("auto-labelled (%)")
-for a in ax: a.set_xlabel("random audit rate (% of auto-labelled houses)"); a.set_xlim(-0.5, 12.5)
+for a in ax: a.set_xlabel("random audit rate (% of auto-labelled houses)"); a.set_xlim(-0.5, 10.5)
+ax[1].legend(loc="center left", bbox_to_anchor=(1.01, 0.5), title="target", title_fontsize=7)
 fig.suptitle("M2 learn as you go (T3, destroyed vs not): without audits it never sees its own misses", fontsize=8.5, color=INK)
 fig.tight_layout(rect=(0, 0, 1, 0.92)); save(fig, "fig8_m2_audits")
 # F9: shift vs transfer gap
@@ -186,15 +186,17 @@ g = s.groupby(["model", "tgt"])[["energy", "transfer_gap_pp"]].mean().reset_inde
 fig, a = plt.subplots(figsize=(5.2, 3.6))
 for m, col, mk in [("t1", C1, "o"), ("t2", C2, "s"), ("t3", C3, "^")]:
     x = g[g.model == m]; a.plot(x.energy, x.transfer_gap_pp, marker=mk, color=col, ls="none", ms=7, mec=SURF, mew=0.8, label=m.upper())
-    for _, r in x.iterrows(): a.annotate(r.tgt, (r.energy, r.transfer_gap_pp), xytext=(4, 2), textcoords="offset points", fontsize=6.5, color=INK2)
+    for _, r in x.iterrows(): a.annotate(r.tgt, (r.energy, r.transfer_gap_pp), xytext=(4, -9 if m == "t2" else 2), textcoords="offset points", fontsize=6.5, color=INK2)
 a.axhline(0, color=AXC, lw=1); a.set_xlabel("energy distance, calib vs target predictions (no labels)"); a.set_ylabel("transfer gap (percentage points)")
 a.legend(loc="upper right"); a.set_title("Prediction-based shift does not predict where the 5% rule slips", fontsize=8.5)
 fig.tight_layout(); save(fig, "fig9_shift_vs_gap")
 # F10: paired T3 - T1
 p5 = pd.read_csv(os.path.join(T, "e2_wp5_paired.csv"))
 fig, ax = plt.subplots(1, 3, figsize=(10, 2.8), sharey=True)
-for a, met, lab in zip(ax, ["macro_f1", "f1_des", "missed_destroyed_rate"], ["macro-F1", "destroyed F1", "missed destroyed (APS, A1)"]):
-    x = p5[p5.metric == met].set_index("target").loc[ORDER[::-1]]; yy = np.arange(len(x))
+for a, met, lab in zip(ax, ["macro_f1", "f1_des", "missed_destroyed_rate"], ["macro-F1", "destroyed F1", "missed destroyed, pp (APS, A1)"]):
+    x = p5[p5.metric == met].set_index("target").loc[ORDER[::-1]].copy(); yy = np.arange(len(x))
+    if met == "missed_destroyed_rate": x[["diff_t3_minus_t1", "ci_lo", "ci_hi"]] *= 100
+    a.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(5))
     a.errorbar(x.diff_t3_minus_t1, yy, xerr=[x.diff_t3_minus_t1 - x.ci_lo, x.ci_hi - x.diff_t3_minus_t1], fmt="o", color=C3, ms=5, capsize=0, lw=1.5)
     a.axvline(0, color=AXC, lw=1)
     if met == "macro_f1": a.axvspan(-0.02, 0.02, color=GRIDC, alpha=0.6, lw=0)
