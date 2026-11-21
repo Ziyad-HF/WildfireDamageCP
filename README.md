@@ -1,48 +1,68 @@
 # WildfireDamageCP
 
-Building damage assessment from satellite images after wildfires, with calibrated uncertainty.
-Instead of a single label per building, each model returns a small set of possible damage levels
-(conformal prediction). Buildings with a single-label set are labelled automatically; the rest are
-sent to a field inspector. The question is how much inspection work this saves, and whether the
-error guarantees still hold on a fire the model has never seen.
+**Knowing when to ask an inspector: calibrated building-damage assessment after wildfires.**
 
-![Eaton Fire: auto-labelled vs routed buildings](outputs/figures/fig5_eaton_map.png)
+After a wildfire, every damaged home has to be inspected, which takes thousands of inspector-days. This project
+asks how much of that work satellite AI can safely take over. Each model gives every building a calibrated set of
+plausible damage levels (conformal prediction). Buildings with a single-label set are labelled automatically; the
+rest go to a field inspector. The key question is whether the error guarantee, *at most 5% of destroyed homes
+labelled as something else*, still holds on a fire the model has never seen.
 
-## What it does
+![Eaton Fire 2025: buildings auto-labelled vs routed to an inspector](outputs/figures/fig5_eaton_map.png)
 
-1. Crops a 64 m × 64 m pre-fire and post-fire image around every building (224 × 224 px).
-2. Predicts *no damage / damaged / destroyed* with one of three models:
-   - **T1**: Siamese ConvNeXt-Tiny trained on the crops
-   - **T2**: Qwen3-VL-8B-Instruct, zero-shot, probabilities from the A/B/C answer tokens
-   - **T3**: the same VLM fine-tuned with LoRA
-3. Calibrates the probabilities with temperature scaling.
-4. Builds split-conformal prediction sets at 90% target coverage (LAC, APS, ordinal, class-conditional).
-5. Routes buildings: single-label sets are auto-labelled, larger sets go to an inspector. The threshold
-   is chosen on calibration fires so that at most 5% of destroyed buildings are auto-labelled as something else.
+## Highlights
 
-Evaluation is leave-one-fire-out over four xBD wildfires, plus an external test on the 2025 Eaton Fire
-(Los Angeles) using CAL FIRE field-inspection labels and Maxar WorldView-3 imagery.
+- **Three model families** on 83,000 buildings: a Siamese ConvNeXt CNN, a vision-language model (Qwen3-VL-8B) used
+  zero-shot, and the same VLM fine-tuned with LoRA; plus a second VLM (Gemma 4 12B) as a robustness check.
+- **Calibration and conformal prediction:** temperature scaling; split-conformal sets (LAC, APS, ordinal,
+  class-conditional); a routing rule tuned so that ≤ 5% of destroyed homes are missed on calibration fires.
+- **Strict evaluation:** leave-one-fire-out over four xBD wildfires (spatial ~500 m grid-cell splits, no
+  neighbourhood leakage), an external test on the **2025 Eaton Fire** against CAL FIRE field-inspection records,
+  cluster-bootstrap confidence intervals, and analysis rules written down before the results were seen.
+- **Stress tests of the routing idea:** simple confidence baselines, five methods for keeping the 5% limit on a
+  new fire (risk control, adaptive thresholds with audits, label-shift and covariate-shift weighting, a
+  shift alarm), a paired CNN-vs-VLM comparison and an inspector-workload model.
 
 ## Results
 
-| | T1 CNN | T2 VLM zero-shot | T3 VLM + LoRA |
+| | CNN (T1) | VLM zero-shot (T2) | VLM + LoRA (T3) |
 |---|---|---|---|
 | Macro-F1, held-out xBD fires | 0.53–0.67 | 0.31–0.40 | 0.52–0.67 |
 | Macro-F1, Eaton 2025 | 0.68 | 0.43 | 0.69 |
-| ECE after temperature scaling | 0.010–0.036 | 0.07–0.23 | 0.012–0.031 |
-| Eaton: auto-labelled / destroyed missed (APS) | 91% / 2.8% | – | 93% / 1.0% |
+| Destroyed-vs-not AUROC, held-out fires | 0.94–0.99 | 0.80–0.96 | 0.93–0.995 |
+| Calibration error (ECE) after temperature scaling | 0.010–0.036 | 0.07–0.23 | 0.012–0.031 |
+| Eaton: buildings auto-labelled / destroyed homes missed | 91% / 2.8% | – | 93% / 1.0% |
 
-- On Eaton the routing works: about 93% of buildings need no visit and about 1% of destroyed homes are missed.
-- On xBD fires that look different from the training fires (Woolsey, Pinery, Portugal), the guarantees
-  do not transfer. Coverage of destroyed buildings drops to 0.24–0.40 on Portugal, and 9–43% of destroyed
-  buildings are missed by the routing rule.
-- Recalibrating on 100–300 labelled buildings from the new fire restores coverage, but not the 5% miss target.
-- The *damaged* class is barely learned by any model (F1 ≤ 0.22); it is rare and often not visible from above.
+**What works.** On the 2025 Eaton Fire, about 93% of buildings need no visit while about 1% of destroyed homes are
+missed. Fine-tuning makes the VLM as accurate as the task-specific CNN (equivalent within ±0.02 macro-F1 on three
+of five targets, paired bootstrap) and better calibrated, and under routing it misses fewer destroyed homes on four of five targets.
 
-Full tables are in [`results/tables/report_tables.md`](results/tables/report_tables.md) and a short write-up
-in [`docs/results_summary.md`](docs/results_summary.md).
+**What breaks.** On fires that differ from the training fires (Woolsey, Pinery, Portugal), the guarantees do not
+transfer: 9–43% of destroyed homes are missed, although the CNN and the fine-tuned VLM still *rank* destroyed homes well (AUROC ≥ 0.93).
+The failure is where the cut-off lands, not the model's ranking.
 
-![Coverage of destroyed buildings by fire](outputs/figures/report/figC_destroyed_coverage.png)
+**What the stress tests show** (T3, destroyed vs not):
+
+| Approach | Keeps ≤ 5% missed on | Trade-off |
+|---|---|---|
+| Conformal routing (APS) | 2 of 5 targets | auto-labels 85–96% everywhere, even where it should be careful |
+| Simple "accept if confident" rule | 2 of 5 | within about 3 points of conformal routing |
+| Local risk control on 300 inspected houses | 5 of 5 | auto-labels only 20–24% on the hardest fires |
+| Adaptive threshold with 5% random audits | 2 of 5 | missed destroyed on Portugal: 46% → 6.5% |
+| Look-alike weighting on image features | 4 of 5 on average | single models fail on the two hardest fires |
+
+- Conformal routing is no better than a simple confidence rule at saving work; its value is a guarantee that can be
+  checked on similar fires, and a clear signal of when it is broken.
+- Measuring how "different" a new fire looks from the model's predictions does **not** predict failure; a shift
+  alarm built on it fires on every fire.
+- A stronger zero-shot VLM (Gemma 4 12B) closes much of the gap to the fine-tuned model (macro-F1 0.46–0.64), so
+  fine-tuning matters less than the Qwen zero-shot results suggest.
+- The *damaged* class is barely learned by any model (F1 ≤ 0.22): it is rare and often invisible from above.
+
+![Work saved vs destroyed homes missed, per fire](outputs/figures/e2/fig7_methods_tradeoff.png)
+
+Full results: [`results/tables/report_tables.md`](results/tables/report_tables.md) (main analysis) and
+[`results/tables/e2_report_tables.md`](results/tables/e2_report_tables.md) (stress tests).
 
 ## Data
 
@@ -55,7 +75,6 @@ Not included in this repository.
 | Maxar Open Data, WildFires-LosAngeles-Jan-2025 | external test imagery | [AWS Open Data](https://registry.opendata.aws/maxar-open-data/) |
 
 Labels are mapped to three classes: no damage; damaged (xBD minor + major, DINS 1–50%); destroyed.
-xBD's `socal-fire` and `woolsey-fire` cover the same area and are treated as one fire.
 
 | Fire | No damage | Damaged | Destroyed | Total |
 |---|---|---|---|---|
@@ -65,60 +84,50 @@ xBD's `socal-fire` and `woolsey-fire` cover the same area and are treated as one
 | Portugal 2017 | 20,787 | 472 | 1,090 | 22,349 |
 | Eaton 2025 | 4,007 | 543 | 3,907 | 8,457 |
 
+A second external test on the 2025 Palisades Fire was prepared but not run: the only pre-fire WorldView-3 image in
+Maxar Open Data covers 15% of its buildings, and the pre/post alignment check failed its preset threshold.
+
 ## Repository layout
 
 ```
-configs/          analysis rules (preregistration.md), VLM prompt, split checksums, package versions
-scripts/
-  data_prep/      label counts, Maxar download, crop extraction, Eaton alignment check
-  checks/         sanity checks on splits and outputs
-  report/         figure and report builders
+configs/            analysis rules (preregistration.md), VLM prompts, split checksums, package versions
+scripts/data_prep/  label counts, Maxar download, crop extraction, alignment checks
+scripts/checks/     consistency checks (including exact reproduction of the main results)
 src/
-  make_splits.py  leave-one-fire-out splits by ~500 m grid cell
-  t1_train.py     T1 CNN
-  t2_full.py      T2 zero-shot VLM
-  t3_train.py     T3 LoRA fine-tuning
-  phase5.py       temperature scaling, conformal sets, routing, bootstrap CIs
-  phase7_*.py     tables and figures
-  e1_*.py         recalibration on a sample from the target fire
-results/
-  preds/          per-building predictions, one CSV per model × fold × seed
-  tables/         all metrics
-outputs/figures/  figures
+  t1_train.py       Siamese ConvNeXt-Tiny
+  t2_full.py        zero-shot VLM scoring (answer-token probabilities)
+  t3_train.py       LoRA fine-tuning of Qwen3-VL-8B
+  phase5.py         temperature scaling, conformal sets, routing, bootstrap CIs
+  phase7_*.py       main tables and figures
+  e1_*.py           recalibration on a sample from the new fire
+  e2_*.py           stress tests: baselines, shift-robust routing, shift measures, paired tests, workload, VLM checks
+results/preds/      per-building predictions, one CSV per model × fold × seed
+results/tables/     all metrics
+outputs/figures/    figures
 ```
 
-Each prediction CSV has `id, source, role, label, logit_no, logit_dmg, logit_des, p_no, p_dmg, p_des`,
-where `role` is `train/val/calib/test/eaton`. Every analysis from calibration onward runs from these files alone.
+Each prediction CSV has `id, source, role, label, logit_no, logit_dmg, logit_des, p_no, p_dmg, p_des`; every
+analysis from calibration onward runs from these files alone, on a normal computer.
 
 ## Running it
 
 Python 3.11, PyTorch 2.14, transformers 5.22, timm, peft (exact versions in `configs/env_versions.txt`).
-Paths default to the repository root; set `WDCP_ROOT` to point elsewhere.
 
 ```bash
-# data preparation (once)
-python scripts/data_prep/download_maxar_eaton.py
-python scripts/data_prep/extract_crops.py xbd .
-python scripts/data_prep/extract_crops.py eaton .
+# analysis only (CPU, minutes): starts from results/preds/
+python src/phase5.py && python src/phase7_tables.py && python src/phase7_figs.py
+python scripts/checks/test_e2.py          # reproduces the published routing numbers exactly
+python src/e2_baselines.py && python src/e2_wp2.py && python src/e2_report.py
+
+# full pipeline (data and GPU)
+python scripts/data_prep/extract_crops.py xbd . && python scripts/data_prep/extract_crops.py eaton .
 python src/make_splits.py
-
-# models (GPU; T1 and T3 were run for folds 1-4 and seeds 0-2)
-python src/t1_train.py --fold 1 --seed 0
-python src/t2_full.py 0 8          # chunk 0 of 8, then src/t2_merge.py
+python src/t1_train.py --fold 1 --seed 0      # folds 1-4, seeds 0-2
 python src/t3_train.py --fold 1 --seed 0
-
-# calibration, conformal sets, routing, tables, figures (CPU)
-python src/phase5.py
-python src/phase7_tables.py
-python src/phase7_figs.py
-python src/e1_recalibration.py && python src/e1_recalibration.py summarise
 ```
-
-To reproduce only the analysis, the files in `results/preds/` are enough: start at `phase5.py`.
 
 ## Notes
 
-- Models, metrics, α = 0.10 and the routing rule were fixed in `configs/preregistration.md` before training.
-  Three later changes are recorded there and labelled in the tables: a revised α-selection rule (A1),
-  randomised APS (P1, post-hoc) and the recalibration analysis (E1).
-- xBD (CC BY-NC-SA) and Maxar Open Data (CC BY-NC 4.0) are for non-commercial use only.
+- Models, metrics, the 90% coverage target and the routing rule were fixed in `configs/preregistration.md` before
+  training. Analyses added later are labelled there and in every table (A1, P1, E1, E2).
+- xBD (CC BY-NC-SA) and Maxar Open Data (CC BY-NC 4.0) are for non-commercial use.
