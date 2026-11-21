@@ -296,7 +296,7 @@ T2 prompts v2–v4, a second VLM (Gemma 4 12B, zero-shot) and T3 with a 6-epoch 
 | T3 LoRA, 6-epoch cap | Pinery | 0.574 | 0.023 | 0.950 | 93% / 21.4% |
 | T3 LoRA, 6-epoch cap | Portugal | 0.517 | 0.011 | 0.925 | 94% / 41.2% |
 
-T3 6-epoch cap, decided on validation only: mean best val macro-F1 0.6619 (3-epoch) vs 0.6632 (6-epoch); by the preset rule the 6-epoch models are preferred. 9 of 12 runs are identical to the originals (early stopping ended them before epoch 3); test macro-F1 changes by at most 0.003 per target (table above), so the main results tables keep the original models.
+T3 6-epoch cap, decided on validation only: mean best val macro-F1 0.6619 (3-epoch) vs 0.6632 (6-epoch); by the preset rule the 6-epoch models are preferred. 9 of 12 runs are identical to the originals (early stopping ended them by epoch 3); test macro-F1 changes by at most 0.003 per target (table above), so the main results tables keep the original models.
 
 ## Palisades (WP7)
 
