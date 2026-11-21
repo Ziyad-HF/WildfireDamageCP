@@ -1,0 +1,60 @@
+{
+ "tag": "t3e6_fold1_seed1",
+ "smoke": false,
+ "best_step": 2317,
+ "best_epoch": 0.5,
+ "best_val_macro_f1": 0.6209,
+ "steps_run": 6951,
+ "class_weights": [
+  0.2944,
+  1.8385,
+  0.8672
+ ],
+ "gpu": "NVIDIA H200",
+ "peak_mem_GB": 36.25,
+ "total_s": 2868,
+ "pred_rows": {
+  "test": 21869,
+  "calib": 10059,
+  "eaton": 8457,
+  "val": 5624
+ },
+ "history": [
+  {
+   "step": 2317,
+   "epoch": 0.5,
+   "train_loss_recent": 0.4266,
+   "val_macro_f1": 0.6209,
+   "val_f1": [
+    0.9516,
+    0.1554,
+    0.7557
+   ],
+   "elapsed_s": 734
+  },
+  {
+   "step": 4634,
+   "epoch": 1.0,
+   "train_loss_recent": 0.3884,
+   "val_macro_f1": 0.5779,
+   "val_f1": [
+    0.9539,
+    0.025,
+    0.7547
+   ],
+   "elapsed_s": 1463
+  },
+  {
+   "step": 6951,
+   "epoch": 1.5,
+   "train_loss_recent": 0.347,
+   "val_macro_f1": 0.5821,
+   "val_f1": [
+    0.9428,
+    0.0821,
+    0.7213
+   ],
+   "elapsed_s": 2193
+  }
+ ]
+}

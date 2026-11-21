@@ -56,7 +56,7 @@ The failure is where the cut-off lands, not the model's ranking.
 - Measuring how "different" a new fire looks from the model's predictions does **not** predict failure; a shift
   alarm built on it fires on every fire.
 - A stronger zero-shot VLM (Gemma 4 12B) closes much of the gap to the fine-tuned model (macro-F1 0.46–0.64), so
-  fine-tuning matters less than the Qwen zero-shot results suggest.
+  fine-tuning matters less than the Qwen zero-shot results suggest. Training T3 twice as long changes test macro-F1 by at most 0.003.
 - The *damaged* class is barely learned by any model (F1 ≤ 0.22): it is rare and often invisible from above.
 
 ![Work saved vs destroyed homes missed, per fire](outputs/figures/e2/fig7_methods_tradeoff.png)

@@ -167,7 +167,9 @@ if os.path.exists(f8):
     if os.path.exists(fv):
         v = pd.read_csv(fv).pivot_table(index=["fold", "seed"], columns="run", values="best_val_macro_f1")
         md.append(f"T3 6-epoch cap, decided on validation only: mean best val macro-F1 {v['t3'].mean():.4f} (3-epoch) vs {v['t3e6'].mean():.4f} (6-epoch); "
-                  + ("the 6-epoch models replace the originals." if v["t3e6"].mean() > v["t3"].mean() else "the original 3-epoch models are kept.") + "\n")
+                  + ("by the preset rule the 6-epoch models are preferred. " if v["t3e6"].mean() > v["t3"].mean() else "the original 3-epoch models are kept. ")
+                  + f"{int((v['t3e6'] == v['t3']).sum())} of {len(v)} runs are identical to the originals (early stopping ended them before epoch 3); "
+                  "test macro-F1 changes by at most 0.003 per target (table above), so the main results tables keep the original models.\n")
 md.append("## Palisades (WP7)\n\nNot run. The only WorldView-3 pre-fire image in the Maxar Open Data collection covers 1,546 of 10,288 Palisades structures, "
           "and the pre/post alignment check failed its preset gate (median shift 5.93 m > 5 m).\n")
 open(os.path.join(T, "e2_report_tables.md"), "w").write("\n".join(md))

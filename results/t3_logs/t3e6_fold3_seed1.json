@@ -1,0 +1,96 @@
+{
+ "tag": "t3e6_fold3_seed1",
+ "smoke": false,
+ "best_step": 12196,
+ "best_epoch": 2.0,
+ "best_val_macro_f1": 0.6632,
+ "steps_run": 18294,
+ "class_weights": [
+  0.2903,
+  2.031,
+  0.6787
+ ],
+ "gpu": "NVIDIA H200",
+ "peak_mem_GB": 36.25,
+ "total_s": 6227,
+ "pred_rows": {
+  "calib": 13325,
+  "eaton": 8457,
+  "val": 7085,
+  "test": 5428
+ },
+ "history": [
+  {
+   "step": 3049,
+   "epoch": 0.5,
+   "train_loss_recent": 0.3489,
+   "val_macro_f1": 0.5853,
+   "val_f1": [
+    0.9498,
+    0.0,
+    0.806
+   ],
+   "elapsed_s": 955
+  },
+  {
+   "step": 6098,
+   "epoch": 1.0,
+   "train_loss_recent": 0.3021,
+   "val_macro_f1": 0.5773,
+   "val_f1": [
+    0.9434,
+    0.0,
+    0.7884
+   ],
+   "elapsed_s": 1911
+  },
+  {
+   "step": 9147,
+   "epoch": 1.5,
+   "train_loss_recent": 0.2865,
+   "val_macro_f1": 0.6054,
+   "val_f1": [
+    0.9631,
+    0.0,
+    0.8533
+   ],
+   "elapsed_s": 2867
+  },
+  {
+   "step": 12196,
+   "epoch": 2.0,
+   "train_loss_recent": 0.2616,
+   "val_macro_f1": 0.6632,
+   "val_f1": [
+    0.9661,
+    0.1577,
+    0.8656
+   ],
+   "elapsed_s": 3821
+  },
+  {
+   "step": 15245,
+   "epoch": 2.5,
+   "train_loss_recent": 0.2477,
+   "val_macro_f1": 0.6304,
+   "val_f1": [
+    0.9669,
+    0.0541,
+    0.8703
+   ],
+   "elapsed_s": 4775
+  },
+  {
+   "step": 18294,
+   "epoch": 3.0,
+   "train_loss_recent": 0.2402,
+   "val_macro_f1": 0.6229,
+   "val_f1": [
+    0.9652,
+    0.0339,
+    0.8696
+   ],
+   "elapsed_s": 5727
+  }
+ ]
+}

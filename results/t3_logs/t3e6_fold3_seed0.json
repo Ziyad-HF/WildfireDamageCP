@@ -1,0 +1,132 @@
+{
+ "tag": "t3e6_fold3_seed0",
+ "smoke": false,
+ "best_step": 21343,
+ "best_epoch": 3.5,
+ "best_val_macro_f1": 0.6752,
+ "steps_run": 27441,
+ "class_weights": [
+  0.2903,
+  2.031,
+  0.6787
+ ],
+ "gpu": "NVIDIA H200",
+ "peak_mem_GB": 36.25,
+ "total_s": 9410,
+ "pred_rows": {
+  "calib": 13325,
+  "eaton": 8457,
+  "val": 7085,
+  "test": 5428
+ },
+ "history": [
+  {
+   "step": 3049,
+   "epoch": 0.5,
+   "train_loss_recent": 0.3405,
+   "val_macro_f1": 0.6024,
+   "val_f1": [
+    0.9608,
+    0.0,
+    0.8463
+   ],
+   "elapsed_s": 988
+  },
+  {
+   "step": 6098,
+   "epoch": 1.0,
+   "train_loss_recent": 0.3051,
+   "val_macro_f1": 0.584,
+   "val_f1": [
+    0.9497,
+    0.0,
+    0.8022
+   ],
+   "elapsed_s": 1976
+  },
+  {
+   "step": 9147,
+   "epoch": 1.5,
+   "train_loss_recent": 0.2779,
+   "val_macro_f1": 0.6548,
+   "val_f1": [
+    0.9473,
+    0.2042,
+    0.8129
+   ],
+   "elapsed_s": 2965
+  },
+  {
+   "step": 12196,
+   "epoch": 2.0,
+   "train_loss_recent": 0.2623,
+   "val_macro_f1": 0.667,
+   "val_f1": [
+    0.9565,
+    0.1946,
+    0.8499
+   ],
+   "elapsed_s": 3953
+  },
+  {
+   "step": 15245,
+   "epoch": 2.5,
+   "train_loss_recent": 0.2385,
+   "val_macro_f1": 0.6741,
+   "val_f1": [
+    0.9543,
+    0.2035,
+    0.8646
+   ],
+   "elapsed_s": 4941
+  },
+  {
+   "step": 18294,
+   "epoch": 3.0,
+   "train_loss_recent": 0.2447,
+   "val_macro_f1": 0.6259,
+   "val_f1": [
+    0.963,
+    0.0588,
+    0.8561
+   ],
+   "elapsed_s": 5927
+  },
+  {
+   "step": 21343,
+   "epoch": 3.5,
+   "train_loss_recent": 0.2141,
+   "val_macro_f1": 0.6752,
+   "val_f1": [
+    0.9664,
+    0.1858,
+    0.8736
+   ],
+   "elapsed_s": 6915
+  },
+  {
+   "step": 24392,
+   "epoch": 4.0,
+   "train_loss_recent": 0.2179,
+   "val_macro_f1": 0.6577,
+   "val_f1": [
+    0.9664,
+    0.1448,
+    0.8618
+   ],
+   "elapsed_s": 7903
+  },
+  {
+   "step": 27441,
+   "epoch": 4.5,
+   "train_loss_recent": 0.176,
+   "val_macro_f1": 0.6595,
+   "val_f1": [
+    0.949,
+    0.1811,
+    0.8483
+   ],
+   "elapsed_s": 8891
+  }
+ ]
+}
