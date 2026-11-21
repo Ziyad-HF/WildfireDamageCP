@@ -227,4 +227,13 @@ for a, met, lab in zip(ax, ["macro_f1", "f1_des", "missed_destroyed_rate"], ["ma
     a.set_yticks(yy); a.set_yticklabels(x.index); a.set_title(f"T3 − T1: {lab}")
 fig.suptitle("Paired comparison with 95% cluster-bootstrap CIs (grey band: ±0.02 equivalence margin for macro-F1)", fontsize=8.5, color=INK)
 fig.tight_layout(rect=(0, 0, 1, 0.9)); save(fig, "fig10_t1_vs_t3")
+# plot-ready data behind each figure (results/tables/e2_fig*_data.csv)
+fd = os.path.join(T, "e2_figure_data"); os.makedirs(fd, exist_ok=True)
+main_res.rename(columns={"tgt": "target", "auto": "auto_labelled_share", "missed": "missed_destroyed_rate"})[
+    ["family", "method", "target", "auto_labelled_share", "missed_destroyed_rate"]].round(5).to_csv(os.path.join(fd, "fig7_methods_tradeoff.csv"), index=False)
+m2.rename(columns={"tgt": "target", "auto": "auto_labelled_share", "missed": "missed_destroyed_rate", "audit": "audit_rate"})[
+    ["target", "audit_rate", "auto_labelled_share", "missed_destroyed_rate"]].round(5).to_csv(os.path.join(fd, "fig8_m2_audits.csv"), index=False)
+g9 = s.groupby(["model", "tgt"])[["energy", "mmd", "destroyed_share", "transfer_gap_pp"]].mean().reset_index().rename(columns={"tgt": "target"})
+g9.round(5).to_csv(os.path.join(fd, "fig9_shift_vs_gap.csv"), index=False)
+p5[["target", "metric", "t1", "t3", "diff_t3_minus_t1", "ci_lo", "ci_hi"]].round(5).to_csv(os.path.join(fd, "fig10_t1_vs_t3.csv"), index=False)
 print("wrote e2_report_tables.md and figures")

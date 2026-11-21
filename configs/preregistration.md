@@ -27,7 +27,7 @@ These specify points the rules leave open. Code: `src/make_splits.py`, checks: `
 - **D3 Exclusions:** the 138 buildings (Woolsey 129, Pinery 9) are removed from every role, including test.
 - **D4 Grid cells for the bootstrap (rule 9):** the same D1 cells, stored in `data/processed/splits/cells_xbd.csv`.
 - **D5 T2/T3 model:** Qwen/Qwen3-VL-8B-Instruct (Ziyad's choice, 2026-11-09).
-- **D6 Software:** Python virtual environment `venv_wdcp` (versions in `configs/env_versions.txt`); every job sources `slurm/env.sh`.
+- **D6 Software:** one Python environment for all runs (versions in `configs/env_versions.txt`).
 
 Timing note (for transparency): the split files were generated in the same session, immediately before this
 file was committed, with the D1–D3 procedure written beforehand and run once. No model had been trained or
@@ -46,19 +46,19 @@ evaluated, and no test-fire or Eaton predictions existed.
 
 ## Amendments
 
-### A1 (2026-11-10): rule 8 α selection. Approved by Ziyad on 2026-11-10.
+### A1 (2026-11-10): rule 8 α selection.
 - **Old text (rule 8):** "Choose α on calib as the largest value whose missed-destroyed rate ≤ 5%; apply unchanged to test and Eaton; report the auto-labelled share."
 - **New text:** "Choose α on calib as the grid value (D10 grid) that maximises the calib auto-labelled share subject to calib missed-destroyed rate ≤ 5% (ties → larger α); if none qualifies, route every building. Apply unchanged to test and Eaton; report the auto-labelled share."
 - **Reason:** with LAC (and the binary destroyed-vs-not analysis), larger α gives more empty sets and fewer auto-labels, so the missed-destroyed rate keeps falling and "largest α" always hit the grid edge (0.500, calib auto share ≈ 0.50), contrary to the rule's intent (RQ3: the largest auto-labelled share at ≤ 5% missed destroyed).
 - **Disclosure:** this amendment was proposed **after** the test-fire and Eaton results under the original rule had been computed and seen (commit b31eafa). The selection still uses calib only. Results under the original rule are kept and reported alongside (results/tables/p5_routing.csv, p5_routing_binary.csv); amended results are in p5_routing_amended.csv, p5_routing_binary_amended.csv.
 
-### P1 (2026-11-10): post-hoc analysis, randomised APS and Ordinal. Approved by Ziyad on 2026-11-10. **Not preregistered.**
+### P1 (2026-11-10): post-hoc analysis, randomised APS and Ordinal. **Not preregistered.**
 - **Why:** with the preregistered D9 scores, T1 APS/Ordinal sets at α = 0.10 are degenerate (q̂ = 0 in all 12 T1 runs because calib top-1 accuracy 0.937–0.963 > 0.90, so every set = the top-1 class). Found after the test results were computed.
 - **Method:** score s(x, y) = (mass ranked strictly above y, as in D9) + U · p_y, with U ~ Uniform(0, 1) drawn once per building (numpy default_rng(0), file row order, per run) and shared by all labels of that building; threshold and sets as in D9 (C = {y : s ≤ q̂}; sets can be empty when U · p_top > q̂). Named "APS_rand" and "Ordinal_rand". Routing under both the original rule 8 and A1. Always labelled post-hoc in tables and the report; the preregistered D9 results are reported too.
 
 ## Added analyses (after the main results)
 
-### E1 (2026-11-11): few-shot recalibration on the target fire. Approved by Ziyad on 2026-11-11. **Added after all Phase 5–7 test-fire and Eaton results had been computed and seen; not preregistered.**
+### E1 (2026-11-11): few-shot recalibration on the target fire. **Added after all Phase 5–7 test-fire and Eaton results had been computed and seen; not preregistered.**
 - **Question:** if inspectors label a small first batch of houses on the new fire, does fitting T and the conformal thresholds on that batch (instead of on other fires' calib) restore coverage and the ≤ 5% missed-destroyed target on the rest of that fire?
 - **Targets:** each fold's test fire (role test) and Eaton (role eaton, scored by each fold model). Models T1 and T3 (all folds × seeds) are the main result; T2 is computed and reported as secondary.
 - **Sample sizes:** n ∈ {100, 200, 300} buildings; 20 repeats r = 0..19.

@@ -1,6 +1,6 @@
 """Phase 6: T3 = Qwen3-VL-8B-Instruct + LoRA, supervised on the fold's train buildings, early stopping on val.
 
-Design (approved by Ziyad 2026-11-10; details fixed before any T3 run):
+Design (fixed 2026-11-10, before any T3 run):
 - Same frozen prompt and red-circle marker as T2 (configs/t2_prompt.txt, rule 5); no image augmentation.
 - LoRA r=16, alpha=32, dropout 0.05 on the language model's attention + MLP projections; vision tower and lm_head frozen.
   LoRA weights kept in fp32, forward under bf16 autocast.

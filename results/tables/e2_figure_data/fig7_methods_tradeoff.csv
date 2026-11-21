@@ -1,0 +1,91 @@
+family,method,target,auto_labelled_share,missed_destroyed_rate
+WP1 baseline,B1 top probability,Eaton,0.90925,0.01126
+WP1 baseline,B1 top probability,Pinery,0.93165,0.2329
+WP1 baseline,B1 top probability,Portugal,0.96264,0.47921
+WP1 baseline,B1 top probability,Santa Rosa,0.88428,0.00969
+WP1 baseline,B1 top probability,Woolsey,0.88628,0.10917
+WP1 baseline,B2 margin,Eaton,0.90925,0.01126
+WP1 baseline,B2 margin,Pinery,0.93165,0.2329
+WP1 baseline,B2 margin,Portugal,0.96264,0.47921
+WP1 baseline,B2 margin,Santa Rosa,0.88428,0.00969
+WP1 baseline,B2 margin,Woolsey,0.88628,0.10917
+WP1 baseline,B3 entropy,Eaton,0.90925,0.01126
+WP1 baseline,B3 entropy,Pinery,0.93165,0.2329
+WP1 baseline,B3 entropy,Portugal,0.96264,0.47921
+WP1 baseline,B3 entropy,Santa Rosa,0.88428,0.00969
+WP1 baseline,B3 entropy,Woolsey,0.88628,0.10917
+WP1 baseline,B4 seed agreement,Eaton,0.93083,0.00954
+WP1 baseline,B4 seed agreement,Pinery,0.93939,0.23144
+WP1 baseline,B4 seed agreement,Portugal,0.96805,0.51193
+WP1 baseline,B4 seed agreement,Santa Rosa,0.91124,0.01033
+WP1 baseline,B4 seed agreement,Woolsey,0.89586,0.1122
+WP1 baseline,B5 T1–T3 agreement,Eaton,0.93097,0.01209
+WP1 baseline,B5 T1–T3 agreement,Pinery,0.96813,0.33188
+WP1 baseline,B5 T1–T3 agreement,Portugal,0.98143,0.59541
+WP1 baseline,B5 T1–T3 agreement,Santa Rosa,0.9032,0.00723
+WP1 baseline,B5 T1–T3 agreement,Woolsey,0.92617,0.12368
+WP1 baseline,Conformal APS (Phase 5),Eaton,0.89315,0.01
+WP1 baseline,Conformal APS (Phase 5),Pinery,0.9209,0.20233
+WP1 baseline,Conformal APS (Phase 5),Portugal,0.95853,0.46025
+WP1 baseline,Conformal APS (Phase 5),Santa Rosa,0.86102,0.00763
+WP1 baseline,Conformal APS (Phase 5),Woolsey,0.85375,0.08389
+WP1 baseline,Randomised APS (P1),Eaton,0.82263,0.01013
+WP1 baseline,Randomised APS (P1),Pinery,0.85722,0.17176
+WP1 baseline,Randomised APS (P1),Portugal,0.8765,0.33578
+WP1 baseline,Randomised APS (P1),Santa Rosa,0.78778,0.00878
+WP1 baseline,Randomised APS (P1),Woolsey,0.79375,0.0803
+WP1 baseline,Conformal LAC,Eaton,0.91101,0.01156
+WP1 baseline,Conformal LAC,Pinery,0.9303,0.22853
+WP1 baseline,Conformal LAC,Portugal,0.96423,0.48563
+WP1 baseline,Conformal LAC,Santa Rosa,0.88597,0.00998
+WP1 baseline,Conformal LAC,Woolsey,0.89586,0.11834
+WP1 baseline,Conformal Mondrian,Eaton,0.99175,0.01002
+WP1 baseline,Conformal Mondrian,Pinery,0.99761,0.21543
+WP1 baseline,Conformal Mondrian,Portugal,0.99939,0.44128
+WP1 baseline,Conformal Mondrian,Santa Rosa,0.97266,0.00993
+WP1 baseline,Conformal Mondrian,Woolsey,0.99708,0.07536
+WP1 baseline,Conformal APS on seed average,Eaton,0.90103,0.00973
+WP1 baseline,Conformal APS on seed average,Pinery,0.94197,0.24017
+WP1 baseline,Conformal APS on seed average,Portugal,0.96219,0.47615
+WP1 baseline,Conformal APS on seed average,Santa Rosa,0.86332,0.00551
+WP1 baseline,Conformal APS on seed average,Woolsey,0.88625,0.09785
+WP2 repair,M1 risk control (calib),Eaton,0.9086,0.01126
+WP2 repair,M1 risk control (calib),Pinery,0.93165,0.2329
+WP2 repair,M1 risk control (calib),Portugal,0.96264,0.47921
+WP2 repair,M1 risk control (calib),Santa Rosa,0.88291,0.00946
+WP2 repair,M1 risk control (calib),Woolsey,0.88628,0.10917
+WP2 repair,"M1 risk control (local sample, n = 100)",Eaton,0.73356,0.01938
+WP2 repair,"M1 risk control (local sample, n = 100)",Pinery,0.0,0.0
+WP2 repair,"M1 risk control (local sample, n = 100)",Portugal,0.02164,0.00118
+WP2 repair,"M1 risk control (local sample, n = 100)",Santa Rosa,0.42517,0.01661
+WP2 repair,"M1 risk control (local sample, n = 100)",Woolsey,0.31696,0.02499
+WP2 repair,"M1 risk control (local sample, n = 300)",Eaton,0.94715,0.02244
+WP2 repair,"M1 risk control (local sample, n = 300)",Pinery,0.23668,0.03025
+WP2 repair,"M1 risk control (local sample, n = 300)",Portugal,0.20419,0.0238
+WP2 repair,"M1 risk control (local sample, n = 300)",Santa Rosa,0.84568,0.03204
+WP2 repair,"M1 risk control (local sample, n = 300)",Woolsey,0.71644,0.0493
+WP2 repair,M2 learn as you go (0% audits),Eaton,0.92376,0.01289
+WP2 repair,M2 learn as you go (0% audits),Pinery,0.96075,0.30415
+WP2 repair,M2 learn as you go (0% audits),Portugal,0.99064,0.62327
+WP2 repair,M2 learn as you go (0% audits),Santa Rosa,0.9459,0.02659
+WP2 repair,M2 learn as you go (0% audits),Woolsey,0.96085,0.21244
+WP2 repair,M2 learn as you go (5% audits),Eaton,0.92143,0.01253
+WP2 repair,M2 learn as you go (5% audits),Pinery,0.55814,0.14149
+WP2 repair,M2 learn as you go (5% audits),Portugal,0.24355,0.06524
+WP2 repair,M2 learn as you go (5% audits),Santa Rosa,0.93573,0.02261
+WP2 repair,M2 learn as you go (5% audits),Woolsey,0.71122,0.06096
+WP2 repair,M3 label-shift reweighting,Eaton,0.90921,0.01145
+WP2 repair,M3 label-shift reweighting,Pinery,0.90229,0.18486
+WP2 repair,M3 label-shift reweighting,Portugal,0.95234,0.437
+WP2 repair,M3 label-shift reweighting,Santa Rosa,0.88201,0.00947
+WP2 repair,M3 label-shift reweighting,Woolsey,0.88386,0.10558
+WP2 repair,M5 look-alike weighting (scores),Eaton,0.95764,0.01888
+WP2 repair,M5 look-alike weighting (scores),Pinery,0.28273,0.0393
+WP2 repair,M5 look-alike weighting (scores),Portugal,0.55293,0.09113
+WP2 repair,M5 look-alike weighting (scores),Santa Rosa,0.97668,0.03821
+WP2 repair,M5 look-alike weighting (scores),Woolsey,0.77772,0.04194
+WP2 repair,M5 look-alike weighting (image features),Eaton,0.90027,0.00879
+WP2 repair,M5 look-alike weighting (image features),Pinery,0.51646,0.0393
+WP2 repair,M5 look-alike weighting (image features),Portugal,0.59812,0.05046
+WP2 repair,M5 look-alike weighting (image features),Santa Rosa,0.89638,0.01256
+WP2 repair,M5 look-alike weighting (image features),Woolsey,0.71331,0.03206

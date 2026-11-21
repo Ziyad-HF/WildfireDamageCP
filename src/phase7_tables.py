@@ -125,7 +125,7 @@ emit("table4_conformal", "Table 4. Conformal sets at α = 0.10 (target coverage 
      "Preregistered methods (rule 7, D9). Non-randomised APS/Ordinal are degenerate (q̂ = 0, every set = top-1 class) for T1 and T3 because their calib accuracy exceeds 0.90.")
 emit("table4b_conformal_posthoc", "Table 4b. POST-HOC (P1): randomised APS / Ordinal at α = 0.10",
      conf_table(pd.read_csv(f"{T}/p5_conformal_posthoc.csv"), ["APS_rand", "Ordinal_rand"], bootA, posthoc=True),
-     "Added after seeing Phase 5 results (approved by Ziyad, 2026-11-10). Not a preregistered result.")
+     "Added after seeing Phase 5 results (2026-11-10). Not a preregistered result.")
 
 # ---- Table 5: routing ----
 def route_table(df, methods, boot_src, met_auto, met_miss, label):

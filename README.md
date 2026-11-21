@@ -62,7 +62,9 @@ The failure is where the cut-off lands, not the model's ranking.
 ![Work saved vs destroyed homes missed, per fire](outputs/figures/e2/fig7_methods_tradeoff.png)
 
 Full results: [`results/tables/report_tables.md`](results/tables/report_tables.md) (main analysis) and
-[`results/tables/e2_report_tables.md`](results/tables/e2_report_tables.md) (stress tests).
+[`results/tables/e2_report_tables.md`](results/tables/e2_report_tables.md) (stress tests), with reproducibility and
+data-quality checks in [`results/tables/e2_checks.md`](results/tables/e2_checks.md). The numbers behind each stress-test
+figure are in [`results/tables/e2_figure_data/`](results/tables/e2_figure_data/), ready to re-plot.
 
 ## Data
 

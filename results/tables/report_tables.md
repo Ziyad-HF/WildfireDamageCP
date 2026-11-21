@@ -140,7 +140,7 @@ Preregistered methods (rule 7, D9). Non-randomised APS/Ordinal are degenerate (q
 
 ## Table 4b. POST-HOC (P1): randomised APS / Ordinal at α = 0.10
 
-Added after seeing Phase 5 results (approved by Ziyad, 2026-11-10). Not a preregistered result.
+Added after seeing Phase 5 results (2026-11-10). Not a preregistered result.
 
 | model | method | evaluation | coverage | coverage 95% CI | cov no damage | cov damaged | cov destroyed | mean set size |
 |---|---|---|---|---|---|---|---|---|
