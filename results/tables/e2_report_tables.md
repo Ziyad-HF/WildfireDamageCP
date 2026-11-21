@@ -254,6 +254,43 @@ Houses to visit include M2 audits and the M1 local sample. One team checks 100 h
 | Pinery | Inspect everything | 5428 | 54 | 2.2 | 0.0 |
 | Portugal | Inspect everything | 22349 | 223 | 8.9 | 0.0 |
 
+## Fairer test of the vision-language models (WP8)
+
+T2 prompts v2–v4, a second VLM (Gemma 4 12B, zero-shot) and T3 with a 6-epoch cap. Routing = APS under A1 on destroyed vs not.
+
+| label | target | macro-F1 | ECE after | AUROC destroyed | binary auto / missed |
+|---|---|---|---|---|---|
+| T2 prompt v1 (original) | Eaton | 0.426 | 0.233 | 0.979 | 27% / 0.2% |
+| T2 prompt v1 (original) | Santa Rosa | 0.399 | 0.229 | 0.960 | 16% / 0.3% |
+| T2 prompt v1 (original) | Woolsey | 0.375 | 0.157 | 0.887 | 32% / 2.8% |
+| T2 prompt v1 (original) | Pinery | 0.373 | 0.074 | 0.882 | 59% / 9.2% |
+| T2 prompt v1 (original) | Portugal | 0.311 | 0.152 | 0.796 | 82% / 41.0% |
+| Gemma 4 12B zero-shot (prompt v1) | Eaton | 0.641 | 0.033 | 0.996 | 95% / 0.4% |
+| Gemma 4 12B zero-shot (prompt v1) | Santa Rosa | 0.560 | 0.051 | 0.987 | 76% / 0.4% |
+| Gemma 4 12B zero-shot (prompt v1) | Woolsey | 0.542 | 0.044 | 0.955 | 98% / 7.9% |
+| Gemma 4 12B zero-shot (prompt v1) | Pinery | 0.461 | 0.054 | 0.934 | 94% / 17.5% |
+| Gemma 4 12B zero-shot (prompt v1) | Portugal | 0.505 | 0.105 | 0.923 | 100% / 36.9% |
+| T2 prompt v2 (CAL FIRE terms) | Eaton | 0.403 | 0.251 | 0.977 | 19% / 0.2% |
+| T2 prompt v2 (CAL FIRE terms) | Santa Rosa | 0.380 | 0.271 | 0.954 | 16% / 0.7% |
+| T2 prompt v2 (CAL FIRE terms) | Woolsey | 0.368 | 0.206 | 0.876 | 33% / 3.7% |
+| T2 prompt v2 (CAL FIRE terms) | Pinery | 0.370 | 0.164 | 0.883 | 56% / 8.7% |
+| T2 prompt v2 (CAL FIRE terms) | Portugal | 0.326 | 0.126 | 0.785 | 79% / 39.3% |
+| T2 prompt v3 (reversed options) | Eaton | 0.396 | 0.217 | 0.979 | 17% / 0.2% |
+| T2 prompt v3 (reversed options) | Santa Rosa | 0.308 | 0.283 | 0.961 | 19% / 0.4% |
+| T2 prompt v3 (reversed options) | Woolsey | 0.270 | 0.231 | 0.891 | 36% / 3.7% |
+| T2 prompt v3 (reversed options) | Pinery | 0.279 | 0.119 | 0.882 | 61% / 8.7% |
+| T2 prompt v3 (reversed options) | Portugal | 0.251 | 0.050 | 0.791 | 79% / 37.9% |
+| T2 prompt v4 (destroyed yes/no) | Eaton | – | – | 0.970 | 60% / 0.3% |
+| T2 prompt v4 (destroyed yes/no) | Santa Rosa | – | – | 0.952 | 20% / 0.5% |
+| T2 prompt v4 (destroyed yes/no) | Woolsey | – | – | 0.872 | 46% / 6.6% |
+| T2 prompt v4 (destroyed yes/no) | Pinery | – | – | 0.874 | 65% / 12.2% |
+| T2 prompt v4 (destroyed yes/no) | Portugal | – | – | 0.768 | 76% / 39.0% |
+| T3 LoRA, 3-epoch cap (original) | Eaton | 0.693 | 0.031 | 0.997 | 89% / 1.0% |
+| T3 LoRA, 3-epoch cap (original) | Santa Rosa | 0.667 | 0.012 | 0.995 | 86% / 0.8% |
+| T3 LoRA, 3-epoch cap (original) | Woolsey | 0.637 | 0.019 | 0.974 | 85% / 8.4% |
+| T3 LoRA, 3-epoch cap (original) | Pinery | 0.571 | 0.025 | 0.950 | 92% / 20.2% |
+| T3 LoRA, 3-epoch cap (original) | Portugal | 0.519 | 0.015 | 0.931 | 96% / 46.0% |
+
 ## Palisades (WP7)
 
 Not run. The only WorldView-3 pre-fire image in the Maxar Open Data collection covers 1,546 of 10,288 Palisades structures, and the pre/post alignment check failed its preset gate (median shift 5.93 m > 5 m).
