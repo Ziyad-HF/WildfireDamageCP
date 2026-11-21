@@ -70,8 +70,8 @@ evaluated, and no test-fire or Eaton predictions existed.
 - **Limits stated in advance:** labels in the sample are the dataset labels (assumes inspector labels equal ground truth); no new model training; nothing is tuned on the evaluation buildings.
 - **Code / outputs:** src/e1_recalibration.py; results/tables/e1_raw/*.csv (per file), results/tables/e1_summary.csv; outputs/figures/fig6_recalibration.
 
-### E2 (2026-11-18): simple baselines, shift-robust routing and robustness checks. Team decision: plan prepared by Ayman Saeed with Ziyad ElFayoumy after joint review of the results (approved by Ayman Saeed on 2026-11-18); execution started 2026-11-20 at Ziyad's instruction. No separate sign-off: the authors are a team, not a supervisor and student. **Added after all Phase 5–7 and E1 results had been computed and seen; not preregistered.**
-- **Source:** "WildfireDamageCP — Analysis Plan for Publication" (Ayman Saeed, 2026-11-18; copy in plan/ on the cluster). The text below is the plan's E2 draft, followed by the implementation details fixed on 2026-11-20 before any E2 number was computed.
+### E2 (2026-11-18): simple baselines, shift-robust routing and robustness checks. Agreed 2026-11-18; run from 2026-11-20. **Added after all Phase 5–7 and E1 results had been computed and seen; not preregistered.**
+- **Source:** the project's analysis plan for publication (2026-11-18). The text below is the plan's E2 draft, followed by the implementation details fixed on 2026-11-20 before any E2 number was computed.
 - **Questions:** (a) does conformal routing beat simple confidence rules; (b) can routing keep missed-destroyed ≤ 5% on a new fire; (c) do the findings hold on a second external fire.
 - **Main comparison (fixed now):** M2 adaptive routing with 5% random audit vs Phase 5 APS under A1; model T3; destroyed-vs-not task; targets = 4 test fires + Eaton. All other analyses are secondary.
 - **WP1 baselines:** B1 top probability, B2 margin, B3 entropy, B4 seed agreement, B5 T1-T3 agreement, C2 conformal on seed-averaged probabilities. Cut-off from 200 calib quantiles, chosen by the A1 rule (max calib auto share with calib missed-destroyed ≤ 5%).
