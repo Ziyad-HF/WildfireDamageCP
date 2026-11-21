@@ -1,0 +1,1 @@
+Palisades alignment: pre 2024-12-21 (6 WV03 scenes), post 2025-01-15 (6); sampled 30 buildings {'no damage': 10, 'damaged': 10, 'destroyed': 10}; pre-vs-post shift over 200 m windows: median 5.93 m, max 7.55 m; gate (median <= 5 m): FAIL

@@ -1,0 +1,16 @@
+model,target,n_blocks,spearman_rho,p_value
+t1,Eaton,9,-0.8167,0.0072
+t1,Pinery,5,-0.0513,0.9347
+t1,Portugal,30,0.1139,0.5489
+t1,Santa Rosa,24,-0.0096,0.9646
+t1,Woolsey,45,0.2148,0.1564
+t2,Eaton,9,-0.5167,0.1544
+t2,Pinery,5,0.2000,0.7471
+t2,Portugal,30,0.1214,0.5228
+t2,Santa Rosa,24,-0.3751,0.0709
+t2,Woolsey,45,-0.3362,0.0239
+t3,Eaton,9,-0.7333,0.0246
+t3,Pinery,5,-0.3000,0.6238
+t3,Portugal,30,0.1500,0.4289
+t3,Santa Rosa,24,-0.0496,0.8180
+t3,Woolsey,45,-0.2319,0.1253
