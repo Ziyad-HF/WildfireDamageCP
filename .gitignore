@@ -40,3 +40,7 @@ HANDOFF.md
 slurm/
 .gitkeep
 notebooks/
+
+# Symlinks to the data and checkpoint folders on the cluster (not shared)
+/data
+/checkpoints
