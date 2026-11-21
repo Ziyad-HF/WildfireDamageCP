@@ -1,0 +1,14 @@
+# E2 WP8-A prompt v2 (fixed 2026-11-20 before running): damage levels explained in CAL FIRE inspection terms.
+# Same layout and model as configs/t2_prompt.txt. Letters map to classes as given in [MAP].
+[TEXT_BEFORE]
+Image 1 was taken before a wildfire:
+[TEXT_BETWEEN]
+Image 2 shows the same 64 m x 64 m area after the wildfire:
+[QUESTION]
+The building of interest is marked with a red circle in both images. Compare this building before and after the fire and classify its damage using fire-inspection categories.
+A) no damage: the structure shows no visible fire damage
+B) damaged: affected (1-9%), minor (10-25%) or major (26-50%) damage; the structure is still standing
+C) destroyed: more than 50% of the structure is damaged or it has burnt down
+Answer with one letter only: A, B, or C.
+[MAP]
+A=no,B=dmg,C=des

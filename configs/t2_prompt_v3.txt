@@ -1,0 +1,13 @@
+# E2 WP8-A prompt v3 (fixed 2026-11-20 before running): same wording as the original prompt, answer options in reverse order.
+[TEXT_BEFORE]
+Image 1 was taken before a wildfire:
+[TEXT_BETWEEN]
+Image 2 shows the same 64 m x 64 m area after the wildfire:
+[QUESTION]
+The building of interest is marked with a red circle in both images. Compare this building before and after the fire and classify its damage.
+A) destroyed
+B) damaged (partly burnt or damaged, but not destroyed)
+C) no damage
+Answer with one letter only: A, B, or C.
+[MAP]
+A=des,B=dmg,C=no

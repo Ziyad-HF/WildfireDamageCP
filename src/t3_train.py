@@ -21,10 +21,13 @@ from data import load_fold, PROJ
 from vlm_common import MODEL_ID, read_prompt, messages, encode, letter_ids
 
 ap = argparse.ArgumentParser(); ap.add_argument("--fold", type=int, required=True); ap.add_argument("--seed", type=int, required=True)
-ap.add_argument("--smoke", action="store_true"); a = ap.parse_args()
-BS, LR, MAX_EP, PAT, CHECKS_PER_EP = 8, 1e-4, 3, 2, 2
+ap.add_argument("--smoke", action="store_true")
+ap.add_argument("--max-epochs", type=int, default=3)  # E2 WP8-C: 6; outputs then use the tag t3e{N}
+a = ap.parse_args()
+BS, LR, PAT, CHECKS_PER_EP = 8, 1e-4, 2, 2
+MAX_EP = a.max_epochs
 random.seed(a.seed); np.random.seed(a.seed); torch.manual_seed(a.seed)
-tag = f"t3_fold{a.fold}_seed{a.seed}"
+tag = (f"t3" if MAX_EP == 3 else f"t3e{MAX_EP}") + f"_fold{a.fold}_seed{a.seed}"
 OUTP = f"{PROJ}/results/smoke" if a.smoke else f"{PROJ}/results/preds"
 OUTL = f"{PROJ}/results/smoke" if a.smoke else f"{PROJ}/results/t3_logs"
 CK = f"{PROJ}/checkpoints/{'smoke_' if a.smoke else ''}{tag}_best"
