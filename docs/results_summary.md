@@ -44,8 +44,37 @@ Test values: mean ± SD over seeds with 95% cluster-bootstrap CIs. Eaton values:
 - **Fire shift.** It is the main driver of the results. Four training fires are too few to separate fire-level effects (region, imagery, building type) from model effects.
 - **Small "damaged" class** (about 2% of xBD buildings). Per-class results for "damaged" are noisy.
 - **Eaton labels and imagery differ from xBD.** Eaton labels are CAL FIRE field inspections, mapped to 3 classes (Affected/Minor/Major → damaged). The imagery is Maxar, not xBD. Eaton agreement may partly reflect its large destroyed share (46%).
-- **T2 used one frozen prompt**, by design. Other prompts or models were not tried.
-- **Possibly under-trained T3 runs.** T3 was capped at 3 epochs, and 2 of 12 runs scored best at the cap.
+- **T2 used one frozen prompt**, by design. Checked later in E2: three other prompts did not help, but a second zero-shot VLM (Gemma 4 12B) was much stronger (see below).
+- **Possibly under-trained T3 runs.** T3 was capped at 3 epochs, and 2 of 12 runs scored best at the cap. Checked later in E2: a 6-epoch cap changes test macro-F1 by at most 0.003.
 - **Amendment A1** was proposed after seeing test results. The original-rule results are kept in Table 5.
 - **Fixed Mondrian α grid.** Mondrian curves are non-monotone at large α because sets become empty.
 - **Hardware.** All runs were on H200; seed SD reflects training randomness only.
+
+## Added analysis E2: can the routing be made to transfer? (2026-11-20)
+Defined after the results above had been seen (configs/preregistration.md, E2 and I1–I14). Full tables:
+results/tables/e2_report_tables.md; figures: outputs/figures/e2/. T3, destroyed vs not, 5% limit unless stated.
+
+1. **Simple rules are as good as conformal routing at saving work.** Accepting the model's answer when its top
+   probability passes a cut-off is within about 3 points of conformal APS on every fire; both keep the 5% limit only
+   on Santa Rosa and Eaton.
+2. **The ranking is fine; the cut-off is not.** Destroyed-vs-not AUROC is 0.93–0.997 on every target, so the
+   failures on Woolsey, Pinery and Portugal come from where the calibration-fire threshold lands on a new fire.
+3. **Repair methods trade safety for work.**
+   - Risk control on 300 locally inspected houses keeps ≤ 5% on all five targets but auto-labels only 20–24% on
+     Pinery and Portugal.
+   - An adaptive threshold with 5% random audits (the main comparison fixed in advance) cuts missed destroyed homes
+     on Portugal from 46% to 6.5% while auto-labelling 24%; it is safe on 2 of 5 targets, like conformal APS.
+     Without audits it is worse than APS.
+   - Covariate-shift weighting on T1 image features is the best label-free method: safe and useful on 4 of 5 targets
+     on average, but single models fail on Pinery (2 of 3) and Portugal (3 of 3).
+   - Label-shift reweighting and a shift alarm do not help (the alarm fires on every target).
+4. **Shift measured from predictions does not predict failure.** Eaton looks most different from the calibration
+   fires yet works; Woolsey looks least different yet fails.
+5. **Model comparisons.** T1 and T3 have equivalent macro-F1 (±0.02) on Santa Rosa, Woolsey and Eaton (paired
+   bootstrap); T3 misses fewer destroyed homes under routing on four targets. Gemma 4 12B zero-shot reaches
+   macro-F1 0.46–0.64, far above Qwen zero-shot (0.31–0.43) and close to fine-tuned T3 (0.52–0.69).
+6. **Palisades 2025 could not be used** as a second external test: one pre-fire WorldView-3 image covers 15% of its
+   buildings and the pre/post alignment check failed its preset threshold (median shift 5.93 m > 5 m).
+
+Additional limitations: only five targets; many methods compared (one main comparison fixed in advance); VLM scores
+are not bit-identical across GPU types.

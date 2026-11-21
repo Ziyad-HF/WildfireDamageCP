@@ -19,3 +19,5 @@ torch cuda build 13.2
 Qwen3-VL + Qwen2.5-VL classes import OK
 convnext_tiny in timm: True
 pyarrow 25.0.0 datasets 5.0.0
+
+# Added 2026-11-20 for the E2 analyses (Palisades data preparation): shapely 2.1.2, rasterio 1.4.4, pyproj 3.7.2 (PROJ 9.2.0)
